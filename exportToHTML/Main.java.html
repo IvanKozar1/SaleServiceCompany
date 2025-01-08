@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalDate</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">format</span><span class="s2">.</span><span class="s1">DateTimeFormatter</span><span class="s2">;</span>
+
+<span class="s3">//Company</span>
+<span class="s0">class </span><span class="s1">Company </span><span class="s2">{</span>
+    <span class="s1">String name</span><span class="s2">;</span>
+    <span class="s1">String id</span><span class="s2">;</span>
+    <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Client</span><span class="s2">&gt; </span><span class="s1">clients</span><span class="s2">;</span>
+    <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Employee</span><span class="s2">&gt; </span><span class="s1">employees</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Company</span><span class="s2">(</span><span class="s1">String name</span><span class="s2">, </span><span class="s1">String id</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">name </span><span class="s2">= </span><span class="s1">name</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id </span><span class="s2">= </span><span class="s1">id</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">clients </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">employees </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">addEmployee</span><span class="s2">(</span><span class="s1">Employee employee</span><span class="s2">) {</span>
+        <span class="s1">employees</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">employee</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">printEmployees</span><span class="s2">() {</span>
+        <span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">1</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Employee employee </span><span class="s2">: </span><span class="s1">employees</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;ZAPOSLENIK &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Korisnicko ime zaposlenika: &quot; </span><span class="s2">+ </span><span class="s1">employee</span><span class="s2">.</span><span class="s1">username</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Ime zaposlenika: &quot; </span><span class="s2">+ </span><span class="s1">employee</span><span class="s2">.</span><span class="s1">first_name</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Prezime zaposlenika: &quot; </span><span class="s2">+ </span><span class="s1">employee</span><span class="s2">.</span><span class="s1">last_name</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Sifra zaposlenika: &quot; </span><span class="s2">+ </span><span class="s1">employee</span><span class="s2">.</span><span class="s1">password</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+            <span class="s1">i</span><span class="s2">++;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">addClient</span><span class="s2">(</span><span class="s1">Client client</span><span class="s2">) {</span>
+        <span class="s1">clients</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">client</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">printClients</span><span class="s2">() {</span>
+        <span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">1</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Client client </span><span class="s2">: </span><span class="s1">clients</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;KLIJENT &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;OIB klijenta: &quot; </span><span class="s2">+ </span><span class="s1">client</span><span class="s2">.</span><span class="s1">id</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Ime klijenta: &quot; </span><span class="s2">+ </span><span class="s1">client</span><span class="s2">.</span><span class="s1">first_name</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Broj telefona klijenta: &quot; </span><span class="s2">+ </span><span class="s1">client</span><span class="s2">.</span><span class="s1">last_name</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;E-mail adresa klijenta: &quot; </span><span class="s2">+ </span><span class="s1">client</span><span class="s2">.</span><span class="s1">email</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Datum rodenja klijenta: &quot; </span><span class="s2">+ </span><span class="s1">client</span><span class="s2">.</span><span class="s1">birth_date</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+            <span class="s1">i</span><span class="s2">++;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">printCompanyName</span><span class="s2">() {</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Naziv tvrtke: &quot; </span><span class="s2">+ </span><span class="s0">this</span><span class="s2">.</span><span class="s1">name</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;OIB tvrtke: &quot; </span><span class="s2">+ </span><span class="s0">this</span><span class="s2">.</span><span class="s1">id</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s3">//Client</span>
+<span class="s0">class </span><span class="s1">Client </span><span class="s2">{</span>
+    <span class="s1">String id</span><span class="s2">;</span>
+    <span class="s1">String first_name</span><span class="s2">;</span>
+    <span class="s1">String last_name</span><span class="s2">;</span>
+    <span class="s1">String phone_number</span><span class="s2">;</span>
+    <span class="s1">String email</span><span class="s2">;</span>
+    <span class="s1">LocalDate birth_date</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Client</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">, </span><span class="s1">String first_name</span><span class="s2">, </span><span class="s1">String last_name</span><span class="s2">, </span><span class="s1">String phone_number</span><span class="s2">, </span><span class="s1">String email</span><span class="s2">, </span><span class="s1">LocalDate birth_date</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id </span><span class="s2">= </span><span class="s1">id</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">first_name </span><span class="s2">= </span><span class="s1">first_name</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">last_name </span><span class="s2">= </span><span class="s1">last_name</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">phone_number </span><span class="s2">= </span><span class="s1">phone_number</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">email </span><span class="s2">= </span><span class="s1">email</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">birth_date </span><span class="s2">= </span><span class="s1">birth_date</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s3">// Employee class</span>
+<span class="s0">class </span><span class="s1">Employee </span><span class="s2">{</span>
+        <span class="s1">String username</span><span class="s2">;</span>
+        <span class="s1">String first_name</span><span class="s2">;</span>
+        <span class="s1">String last_name</span><span class="s2">;</span>
+        <span class="s1">String password</span><span class="s2">;</span>
+
+     <span class="s0">public </span><span class="s1">Employee</span><span class="s2">(</span><span class="s1">String username</span><span class="s2">, </span><span class="s1">String first_name</span><span class="s2">, </span><span class="s1">String last_name</span><span class="s2">, </span><span class="s1">String password</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">username </span><span class="s2">= </span><span class="s1">username</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">first_name </span><span class="s2">= </span><span class="s1">first_name</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">last_name </span><span class="s2">= </span><span class="s1">last_name</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">password </span><span class="s2">= </span><span class="s1">password</span><span class="s2">;</span>
+
+     <span class="s2">}</span>
+<span class="s2">}</span>
+<span class="s0">public class </span><span class="s1">Main </span><span class="s2">{</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">in</span><span class="s2">);</span>
+        <span class="s1">String companyId</span><span class="s2">;</span>
+        <span class="s1">DateTimeFormatter formatter </span><span class="s2">= </span><span class="s1">DateTimeFormatter</span><span class="s2">.</span><span class="s1">ofPattern</span><span class="s2">(</span><span class="s5">&quot;dd.MM.yyyy&quot;</span><span class="s2">);</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;KREIRANJE TVRTKE&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Unesi ime Tvrtke: &quot;</span><span class="s2">);</span>
+        <span class="s1">String companyName </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+        <span class="s0">do </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Unesi OIB Tvrtke: &quot;</span><span class="s2">);</span>
+            <span class="s1">companyId </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">companyId</span><span class="s2">.</span><span class="s1">matches</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s0">\\</span><span class="s5">d{11}&quot;</span><span class="s2">)){</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Nevezaci OIB! Unesi ponovno (OIB mora sadrzavati 11 znamenki)&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">while </span><span class="s2">(!</span><span class="s1">companyId</span><span class="s2">.</span><span class="s1">matches</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s0">\\</span><span class="s5">d{11}&quot;</span><span class="s2">));</span>
+
+        <span class="s1">Company company </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Company</span><span class="s2">(</span><span class="s1">companyName</span><span class="s2">, </span><span class="s1">companyId</span><span class="s2">);</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Koliko zelite unijeti zaposelnika: &quot;</span><span class="s2">);</span>
+        <span class="s0">int </span><span class="s1">numberOfEmployees </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+        <span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s1">numberOfEmployees</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Unos &quot; </span><span class="s2">+ </span><span class="s1">i </span><span class="s2">+ </span><span class="s5">&quot;. &quot; </span><span class="s2">+ </span><span class="s5">&quot;ZAPOSLENIKA:&quot;</span><span class="s2">);</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Korisnicko ime zaposlenika: &quot;</span><span class="s2">);</span>
+            <span class="s1">String username </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Ime zaposlenika: &quot;</span><span class="s2">);</span>
+            <span class="s1">String firstName </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Prezime zaposlenika: &quot;</span><span class="s2">);</span>
+            <span class="s1">String lastName </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Sifra zaposlenika: &quot;</span><span class="s2">);</span>
+            <span class="s1">String password </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">Employee employee </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Employee</span><span class="s2">(</span><span class="s1">username</span><span class="s2">, </span><span class="s1">firstName</span><span class="s2">, </span><span class="s1">lastName</span><span class="s2">, </span><span class="s1">password</span><span class="s2">);</span>
+            <span class="s1">company</span><span class="s2">.</span><span class="s1">addEmployee</span><span class="s2">(</span><span class="s1">employee</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Koliko zelite unijeti klijenata: &quot;</span><span class="s2">);</span>
+        <span class="s0">int </span><span class="s1">numberOfClients </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+        <span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s1">numberOfClients</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Unos &quot; </span><span class="s2">+ </span><span class="s1">i </span><span class="s2">+ </span><span class="s5">&quot;. &quot; </span><span class="s2">+ </span><span class="s5">&quot;KLIJENTA:&quot;</span><span class="s2">);</span>
+            <span class="s1">String id</span><span class="s2">;</span>
+
+            <span class="s0">do </span><span class="s2">{</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;OIB klijenta: &quot;</span><span class="s2">);</span>
+                <span class="s1">id </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                <span class="s0">if </span><span class="s2">(!</span><span class="s1">id</span><span class="s2">.</span><span class="s1">matches</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s0">\\</span><span class="s5">d{11}&quot;</span><span class="s2">)){</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Nevezaci OIB! Unesi ponovno (OIB mora sadrzavati 11 znamenki)&quot;</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">} </span><span class="s0">while </span><span class="s2">(!</span><span class="s1">id</span><span class="s2">.</span><span class="s1">matches</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s0">\\</span><span class="s5">d{11}&quot;</span><span class="s2">));</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Ime klijenta: &quot;</span><span class="s2">);</span>
+            <span class="s1">String firstName </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Prezime klijenta: &quot;</span><span class="s2">);</span>
+            <span class="s1">String lastName </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Kontakt broj klijenta: &quot;</span><span class="s2">);</span>
+            <span class="s1">String phoneNumber </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;E-mail klijenta: &quot;</span><span class="s2">);</span>
+            <span class="s1">String email </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s5">&quot;Datum rođenja (dd.MM.yyyy): &quot;</span><span class="s2">);</span>
+            <span class="s1">String birthDateInput </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s1">LocalDate birthDate </span><span class="s2">= </span><span class="s1">LocalDate</span><span class="s2">.</span><span class="s1">parse</span><span class="s2">(</span><span class="s1">birthDateInput</span><span class="s2">, </span><span class="s1">formatter</span><span class="s2">);</span>
+
+            <span class="s1">Client client </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Client</span><span class="s2">(</span><span class="s1">id</span><span class="s2">, </span><span class="s1">firstName</span><span class="s2">, </span><span class="s1">lastName</span><span class="s2">, </span><span class="s1">phoneNumber</span><span class="s2">, </span><span class="s1">email</span><span class="s2">, </span><span class="s1">birthDate</span><span class="s2">);</span>
+            <span class="s1">company</span><span class="s2">.</span><span class="s1">addClient</span><span class="s2">(</span><span class="s1">client</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;ISPIS PODATAKA&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">();</span>
+
+        <span class="s1">company</span><span class="s2">.</span><span class="s1">printCompanyName</span><span class="s2">();</span>
+        <span class="s1">company</span><span class="s2">.</span><span class="s1">printEmployees</span><span class="s2">();</span>
+        <span class="s1">company</span><span class="s2">.</span><span class="s1">printClients</span><span class="s2">();</span>
+
+
+        <span class="s1">scanner</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
