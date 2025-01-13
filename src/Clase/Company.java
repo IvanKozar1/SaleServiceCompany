@@ -27,8 +27,8 @@ public class Company {
         clients[vedranJeZamorec] = client;
     }
     public void printClients() {
-        for (int i = 0; i < clients.length; i++) {
-            System.out.println("Ime klijenta: "+ clients[i].lastName + " " + clients[i].firstName);
+        for (Client client : clients) {
+            System.out.println("Ime klijenta: " + client.lastName + " " + client.firstName);
             System.out.println("Ova osoba je klijent");
         }
     }

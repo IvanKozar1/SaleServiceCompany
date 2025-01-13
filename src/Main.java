@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 //ArticleSale
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String companyId;
         int numOfArticles = 3;
@@ -136,9 +136,11 @@ public class Main {
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
         Date serviceDate = new Date();
+        LocalDate alarmDate = LocalDate.now();
 /// //////////////////////////////////////////////////////////////////////////////////////////
 
         for(int i = 0; i < numOfServices; i++) {
+            int j = 1;
             System.out.println("UNESITE " + (i+1) + ". USLUGU: ");
             System.out.println("ODABERITE REDNI BROJ KLIJENTA: ");
             company.printClientForService();
@@ -169,8 +171,19 @@ public class Main {
             ArticleSale articleSale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
             BigDecimal totalPrice = articleSale.sale(numOfSellingArticles);
 
-            System.out.println(totalPrice);
+
+            String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
+
+            Alarm alarm = new Alarm(numberOfClients,alarmDescription, alarmDate, true);
+
+            j++;
+            if(j == numOfServices){
+                System.out.println(totalPrice);
+                System.out.println();
+                alarm.AlarmExpiresException();
+            }
         }
+
 
         System.out.println();
 
