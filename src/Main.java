@@ -171,10 +171,10 @@ public class Main {
             int numOfSellingArticles = scanner.nextInt();
 
             ArticleSale articleSale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
-            BigDecimal totalSingleServicePrice = articleSale.sale(numOfSellingArticles);
+            BigDecimal singleServicePrice = articleSale.sale(numOfSellingArticles);
 
             BigDecimal totalPrice = BigDecimal.ZERO;
-            totalPrice = totalPrice.add(totalSingleServicePrice);
+            totalPrice = totalPrice.add(singleServicePrice);
 
             String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
 
