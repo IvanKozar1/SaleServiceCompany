@@ -171,10 +171,10 @@ public class Main {
             int numOfSellingArticles = scanner.nextInt();
 
             ArticleSale articleSale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
-            BigDecimal totalPrice = articleSale.sale(numOfSellingArticles);
+            BigDecimal totalSingleServicePrice = articleSale.sale(numOfSellingArticles);
 
-            BigDecimal grandePrice = BigDecimal.ZERO;
-            grandePrice = grandePrice.add(totalPrice);
+            BigDecimal totalPrice = BigDecimal.ZERO;
+            totalPrice = totalPrice.add(totalSingleServicePrice);
 
             String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
 
@@ -183,7 +183,7 @@ public class Main {
 
             j++;
             if (j == numOfServices){
-                System.out.println("Ukupna cijena prodanih artikala je: " + grandePrice + " $");
+                System.out.println("Ukupna cijena prodanih artikala je: " + totalPrice + " $");
                 System.out.println();
                 saveAlarm.printAlarms();
             }
