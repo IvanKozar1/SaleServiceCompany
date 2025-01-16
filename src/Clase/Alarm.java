@@ -2,13 +2,13 @@ package Clase;
 import java.time.LocalDate;
 
 public class Alarm {
-    Client[] clients;
+    Client client;
     String description;
     LocalDate time;
     boolean status;
 
-    public Alarm(int numOfClients, String description, LocalDate time, boolean status) {
-        this.clients = new Client[numOfClients];
+    public Alarm(Client client, String description, LocalDate time, boolean status) {
+        this.client = client;
         this.description = description;
         this.time = time;
         this.status = status;

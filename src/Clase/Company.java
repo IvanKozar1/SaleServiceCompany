@@ -33,6 +33,7 @@ public class Company {
         }
     }
 
+
     public void printCompanyName() {
         System.out.println("Naziv tvrtke: " + this.name);
         System.out.println("OIB tvrtke: " + this.id);

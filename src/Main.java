@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 //ArticleSale
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String companyId;
         int numOfArticles = 3;
@@ -51,6 +51,8 @@ public class Main {
         System.out.println();
 
         RetailCompany company = new RetailCompany(companyName, companyId, numberOfClients, numberOfEmployees, numOfArticles);
+
+
 
         for (int i = 0; i < numberOfEmployees; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "ZAPOSLENIKA:");
@@ -105,6 +107,7 @@ public class Main {
 
             Client client = new Client(id, firstName, lastName, phoneNumber, email, birthDate);
             company.addClient(client, i);
+
         }
 
         System.out.println("UNESITE TRI ARTIKLA: ");
@@ -138,9 +141,8 @@ public class Main {
         Date serviceDate = new Date();
         LocalDate alarmDate = LocalDate.now();
 /// //////////////////////////////////////////////////////////////////////////////////////////
-
+        int j = 0;
         for(int i = 0; i < numOfServices; i++) {
-            int j = 1;
             System.out.println("UNESITE " + (i+1) + ". USLUGU: ");
             System.out.println("ODABERITE REDNI BROJ KLIJENTA: ");
             company.printClientForService();
@@ -171,16 +173,19 @@ public class Main {
             ArticleSale articleSale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
             BigDecimal totalPrice = articleSale.sale(numOfSellingArticles);
 
+            BigDecimal grandePrice = BigDecimal.ZERO;
+            grandePrice = grandePrice.add(totalPrice);
 
             String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
 
-            Alarm alarm = new Alarm(numberOfClients,alarmDescription, alarmDate, true);
+            SaveAlarm saveAlarm = new SaveAlarm(articleSale.getClient(),alarmDescription, alarmDate, true, numOfServices);
+            saveAlarm.addAlarm(saveAlarm, i);
 
             j++;
-            if(j == numOfServices){
-                System.out.println(totalPrice);
+            if (j == numOfServices){
+                System.out.println("Ukupna cijena prodanih artikala je: " + grandePrice + " $");
                 System.out.println();
-                alarm.AlarmExpiresException();
+                saveAlarm.printAlarms();
             }
         }
 

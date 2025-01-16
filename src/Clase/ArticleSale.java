@@ -16,4 +16,7 @@ public class ArticleSale extends Service implements Merchandise {
         this.charged = true;    // postavljamo charged na true
         return totalPrice;
     }
+    public Client getClient() {
+        return client;
+    }
 }

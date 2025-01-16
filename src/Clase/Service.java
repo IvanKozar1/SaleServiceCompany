@@ -20,4 +20,5 @@ public class Service {
         this.completed = completed;
         this.charged = charged;
     }
+
 }
