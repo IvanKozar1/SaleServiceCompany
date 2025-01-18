@@ -14,9 +14,5 @@ public class Alarm {
         this.status = status;
     }
 
-    public void AlarmExpiresException() {
-        if(status) {
-            System.out.println(description);
-        }
-    }
+
 }
