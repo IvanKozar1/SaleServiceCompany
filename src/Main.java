@@ -185,7 +185,11 @@ public class Main {
             if (j == numOfServices){
                 System.out.println("Ukupna cijena prodanih artikala je: " + totalPrice + " $");
                 System.out.println();
-                saveAlarm.AlarmExpiresException();
+                try {
+                    saveAlarm.printAlarm();
+                } catch (AlarmExpiresException e) {
+                    System.out.println("Izuzetak: " + e.getMessage());
+                }
             }
         }
 

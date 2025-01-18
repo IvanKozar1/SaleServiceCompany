@@ -13,6 +13,4 @@ public class Alarm {
         this.time = time;
         this.status = status;
     }
-
-
 }

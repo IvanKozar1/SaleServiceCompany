@@ -11,10 +11,10 @@ public class SaveAlarm extends Alarm{
     public void addAlarm(Alarm alarm, int alarmIndex){
         alarms[alarmIndex] = alarm;
     }
-    public void AlarmExpiresException() {
+    public void printAlarm() {
         for (Alarm alarm : alarms) {
-            if (status) {
-                System.out.println(description);
+            if (alarm.status) {
+                throw new AlarmExpiresException(alarm.description);
             }
         }
     }
