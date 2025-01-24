@@ -128,6 +128,8 @@ public class Main {
         }
 
         RetailCompany company = new RetailCompany(articles, companyName, companyId);
+        company.setClients(clients);
+        company.setEmployees(employees);
         return company;
     }
 
