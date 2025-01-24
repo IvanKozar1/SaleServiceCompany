@@ -6,25 +6,16 @@ public class Company {
     Client[] clients;
     Employee[] employees;
 
-    public Company(String name, String id, int maxClients, int maxEmployees) {
+    public Company(String name, String id) {
         this.name = name;
         this.id = id;
-        this.clients = new Client[maxClients];
-        this.employees = new Employee[maxEmployees];
     }
-
-    public void addEmployee(Employee employee, int vedranJeKlokan) {
-        employees[vedranJeKlokan] = employee;
-    }
-
+    
     public void printEmployees() {
         for (int i = 0; i < employees.length; i++) {
             System.out.println("Prezime i ime: " + employees[i].lastName + " " + employees[i].firstName);
             System.out.println("Ova osoba je zaposlenik");
         }
-    }
-    public void addClient(Client client, int vedranJeZamorec) {
-        clients[vedranJeZamorec] = client;
     }
     public void printClients() {
         for (Client client : clients) {
@@ -32,7 +23,6 @@ public class Company {
             System.out.println("Ova osoba je klijent");
         }
     }
-
 
     public void printCompanyName() {
         System.out.println("Naziv tvrtke: " + this.name);
@@ -51,5 +41,37 @@ public class Company {
             return clients[index - 1];
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Client[] getClients() {
+        return clients;
+    }
+
+    public void setClients(Client[] clients) {
+        this.clients = clients;
+    }
+
+    public Employee[] getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Employee[] employees) {
+        this.employees = employees;
     }
 }
