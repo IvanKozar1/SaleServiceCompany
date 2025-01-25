@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         RetailCompany company = enterCompany();
-        
+
         System.out.println("ISPIS PODATAKA");
         System.out.println();
 
@@ -20,59 +20,17 @@ public class Main {
         company.printEmployees();
         company.printClients();
 
-        System.out.print("Unesite broj usluga koje zelite izvrsiti: ");
-        int numOfServices = scanner.nextInt();
-
-/// ///////////////////////////////////////////////////////////////////////////////////////////////
-        Date serviceDate = new Date();
-        LocalDate alarmDate = LocalDate.now();
-/// //////////////////////////////////////////////////////////////////////////////////////////
-        Alarm[] alarms = new Alarm[numOfServices];
-        BigDecimal totalPrice = BigDecimal.ZERO;
-        for(int i = 0; i < numOfServices; i++) {
-            System.out.println("UNESITE " + (i + 1) + ". USLUGU: ");
-            System.out.println("ODABERITE REDNI BROJ KLIJENTA: ");
-            company.printClientForService();
-            System.out.print("Odabir: ");
-            int clientIndex = scanner.nextInt();
-
-            Client clientChoose = company.getClientByIndex(clientIndex);
-            if(clientChoose == null) {
-                System.out.println("Pogrešan unos! Pokušajte ponovno.");
-                continue;
-            }
-
-            System.out.print("Vrsta usluge: ");
-            scanner.nextLine();
-            String serviceType = scanner.nextLine();
-            System.out.print("Opis usluge: ");
-            String serviceDescription = scanner.nextLine();
-            System.out.print("Cijena usluge: ");
-            BigDecimal servicePrice = scanner.nextBigDecimal();
-            System.out.println("ODABIR ARTIKLA:");
-            company.printArticle();
-            System.out.print("Odabir: ");
-            int articleChoose = scanner.nextInt();
-
-            System.out.print("Unesite broj artikala koji zelite prodati: ");
-            int numOfSellingArticles = scanner.nextInt();
-
-            ArticleSale articleSale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
-            BigDecimal singleServicePrice = articleSale.sale(numOfSellingArticles);
-
-            totalPrice = totalPrice.add(singleServicePrice);
-
-            String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
-
-            Alarm alarm = new Alarm(articleSale.getClient(), alarmDescription, alarmDate, true);
+        ArticleSale[] articleSales = enterService(company);
+        Alarm[] alarms = new Alarm[articleSales.length];
+        for (int i = 0; i < articleSales.length; i++) {
+            Alarm alarm = enterAlarm(articleSales[i].getDescription(), articleSales[i].getClient());
             alarms[i] = alarm;
         }
-        System.out.println("Ukupna cijena prodanih artikala je: " + totalPrice + " $");
 
-        for(int i = 0; i < alarms.length; i++) {
+        for (int i = 0; i < alarms.length; i++) {
             try {
                 activateAlarm(alarms[i]);
-            } catch(AlarmExpiresException e) {
+            } catch (AlarmExpiresException e) {
                 System.out.println("Izuzetak: " + e.getMessage());
             }
         }
@@ -80,7 +38,7 @@ public class Main {
     }
 
     private static void activateAlarm(Alarm alarm) {
-        if(alarm.isActive()) {
+        if (alarm.isActive()) {
             throw new AlarmExpiresException(alarm.getDescription());
         }
         System.out.println("Alarm nije aktiviran.");
@@ -102,7 +60,7 @@ public class Main {
         System.out.print("Koliko zelite unijeti zaposelnika: ");
         int numberOfEmployees = scanner.nextInt();
         Employee[] employees = new Employee[numberOfEmployees];
-        for(int i = 0; i < numberOfEmployees; i++) {
+        for (int i = 0; i < numberOfEmployees; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "ZAPOSLENIKA:");
             Employee employee = enterEmployees();
             employees[i] = employee;
@@ -112,7 +70,7 @@ public class Main {
         System.out.print("Koliko zelite unijeti klijenata: ");
         int numberOfClients = scanner.nextInt();
         Client[] clients = new Client[numberOfClients];
-        for(int i = 0; i < numberOfClients; i++) {
+        for (int i = 0; i < numberOfClients; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "KLIJENTA:");
             Client client = enterClients();
             clients[i] = client;
@@ -121,7 +79,7 @@ public class Main {
 
         System.out.println("UNESITE TRI ARTIKLA: ");
         Article[] articles = new Article[3];
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "artikla: ");
             Article article = enterArticle();
             articles[i] = article;
@@ -190,5 +148,62 @@ public class Main {
 
         Article article = new Article(name, category);
         return article;
+    }
+
+    private static ArticleSale[] enterService(RetailCompany company) {
+        System.out.print("Unesite broj usluga koje zelite izvrsiti: ");
+        int numOfServices = scanner.nextInt();
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
+        Date serviceDate = new Date();
+
+        ArticleSale[] articleSale = new ArticleSale[numOfServices];
+        for (int i = 0; i < numOfServices; i++) {
+            System.out.println("UNESITE " + (i + 1) + ". USLUGU: ");
+            System.out.println("ODABERITE REDNI BROJ KLIJENTA: ");
+            company.printClientForService();
+            System.out.print("Odabir: ");
+            int clientIndex = scanner.nextInt();
+
+            Client clientChoose = company.getClientByIndex(clientIndex);
+            if (clientChoose == null) {
+                System.out.println("Pogrešan unos! Pokušajte ponovno.");
+                continue;
+            }
+
+            System.out.print("Vrsta usluge: ");
+            scanner.nextLine();
+            String serviceType = scanner.nextLine();
+            System.out.print("Opis usluge: ");
+            String serviceDescription = scanner.nextLine();
+            System.out.print("Cijena usluge: ");
+            BigDecimal servicePrice = scanner.nextBigDecimal();
+            System.out.println("ODABIR ARTIKLA:");
+            company.printArticle();
+            System.out.print("Odabir: ");
+            int articleChoose = scanner.nextInt();
+
+            System.out.print("Unesite broj artikala koji zelite prodati: ");
+            int numOfSellingArticles = scanner.nextInt();
+
+
+            ArticleSale sale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
+            articleSale[i] = sale;
+
+            BigDecimal singleServicePrice = sale.sale(numOfSellingArticles);
+            totalPrice = totalPrice.add(singleServicePrice);
+
+        }
+        System.out.println("Ukupna cijena prodanih artikala je: " + totalPrice + " $");
+        return articleSale;
+    }
+
+    private static Alarm enterAlarm(String serviceDescription, Client client) {
+        LocalDate alarmDate = LocalDate.now();
+
+        String alarmDescription = "Obavijest za " + serviceDescription + ", " + alarmDate;
+
+        Alarm alarm = new Alarm(client, alarmDescription, alarmDate, true);
+        return  alarm;
     }
 }
