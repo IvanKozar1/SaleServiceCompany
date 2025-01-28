@@ -1,10 +1,12 @@
 package Clase;
 
+import java.util.List;
+
 public class Company {
     String name;
     String id;
-    Client[] clients;
-    Employee[] employees;
+    List<Client> clients;
+    List<Employee> employees;
 
     public Company(String name, String id) {
         this.name = name;
@@ -12,8 +14,8 @@ public class Company {
     }
     
     public void printEmployees() {
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println("Prezime i ime: " + employees[i].lastName + " " + employees[i].firstName);
+        for (int i = 0; i < employees.size(); i++) {
+            System.out.println("Prezime i ime: " + employees.get(i).lastName + " " + employees.get(i).firstName);
             System.out.println("Ova osoba je zaposlenik");
         }
     }
@@ -31,14 +33,14 @@ public class Company {
     }
 
     public void printClientForService() {
-        for (int i = 0; i < clients.length; i++) {
-            System.out.println((i+1) + ")" + clients[i].firstName + " " + clients[i].lastName);
+        for (int i = 0; i < clients.size(); i++) {
+            System.out.println((i+1) + ")" + clients.get(i).firstName + " " + clients.get(i).lastName);
         }
     }
 
     public Client getClientByIndex(int index) {
-        if (index > 0 && index <= clients.length) {
-            return clients[index - 1];
+        if (index > 0 && index <= clients.size()) {
+            return clients.get(index - 1);
         }
         return null;
     }
@@ -59,19 +61,19 @@ public class Company {
         this.id = id;
     }
 
-    public Client[] getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Client[] clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
-    public Employee[] getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(Employee[] employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 }

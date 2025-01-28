@@ -3,8 +3,7 @@ import Clase.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
@@ -20,16 +19,17 @@ public class Main {
         company.printEmployees();
         company.printClients();
 
-        ArticleSale[] articleSales = enterService(company);
-        Alarm[] alarms = new Alarm[articleSales.length];
-        for (int i = 0; i < articleSales.length; i++) {
-            Alarm alarm = enterAlarm(articleSales[i].getDescription(), articleSales[i].getClient());
-            alarms[i] = alarm;
+        List<ArticleSale> articleSales = enterService(company);
+       // Alarm[] alarms = new Alarm[articleSales.length];
+        List<Alarm> alarms = new ArrayList<>();
+        for (int i = 0; i < articleSales.size(); i++) {
+            Alarm alarm = enterAlarm(articleSales.get(i).getDescription(), articleSales.get(i).getClient());
+            alarms.add(alarm);
         }
 
-        for (int i = 0; i < alarms.length; i++) {
+        for (int i = 0; i < alarms.size(); i++) {
             try {
-                activateAlarm(alarms[i]);
+                activateAlarm(alarms.get(i));
             } catch (AlarmExpiresException e) {
                 System.out.println("Izuzetak: " + e.getMessage());
             }
@@ -59,30 +59,33 @@ public class Main {
 
         System.out.print("Koliko zelite unijeti zaposelnika: ");
         int numberOfEmployees = scanner.nextInt();
-        Employee[] employees = new Employee[numberOfEmployees];
+        //Employee[] employees = new Employee[numberOfEmployees];
+        List<Employee> employees = new ArrayList<>();
         for (int i = 0; i < numberOfEmployees; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "ZAPOSLENIKA:");
             Employee employee = enterEmployees();
-            employees[i] = employee;
+            employees.add(employee);
         }
         System.out.println();
 
         System.out.print("Koliko zelite unijeti klijenata: ");
         int numberOfClients = scanner.nextInt();
-        Client[] clients = new Client[numberOfClients];
+        //Client[] clients = new Client[numberOfClients];
+        List<Client> clients = new ArrayList<>();
         for (int i = 0; i < numberOfClients; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "KLIJENTA:");
             Client client = enterClients();
-            clients[i] = client;
+            clients.add(client);
         }
         System.out.println();
 
         System.out.println("UNESITE TRI ARTIKLA: ");
-        Article[] articles = new Article[3];
+        //Article[] articles = new Article[3];
+        List<Article> articles = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             System.out.println("Unos " + (1 + i) + ". " + "artikla: ");
             Article article = enterArticle();
-            articles[i] = article;
+            articles.add(article);
         }
 
         RetailCompany company = new RetailCompany(articles, companyName, companyId);
@@ -150,14 +153,14 @@ public class Main {
         return article;
     }
 
-    private static ArticleSale[] enterService(RetailCompany company) {
+    private static List<ArticleSale> enterService(RetailCompany company) {
         System.out.print("Unesite broj usluga koje zelite izvrsiti: ");
         int numOfServices = scanner.nextInt();
         BigDecimal totalPrice = BigDecimal.ZERO;
 
         Date serviceDate = new Date();
 
-        ArticleSale[] articleSale = new ArticleSale[numOfServices];
+        List<ArticleSale> articleSale = new ArrayList<>();
         for (int i = 0; i < numOfServices; i++) {
             System.out.println("UNESITE " + (i + 1) + ". USLUGU: ");
             System.out.println("ODABERITE REDNI BROJ KLIJENTA: ");
@@ -188,7 +191,7 @@ public class Main {
 
 
             ArticleSale sale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
-            articleSale[i] = sale;
+            articleSale.add(sale);
 
             BigDecimal singleServicePrice = sale.sale(numOfSellingArticles);
             totalPrice = totalPrice.add(singleServicePrice);
