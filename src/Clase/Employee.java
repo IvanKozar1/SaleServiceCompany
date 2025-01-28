@@ -1,6 +1,6 @@
 package Clase;
 
-public class Employee {
+public class Employee extends Person{
     String username;
     String firstName;
     String lastName;

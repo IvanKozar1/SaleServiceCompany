@@ -7,6 +7,7 @@ public class Company {
     String id;
     List<Client> clients;
     List<Employee> employees;
+    List<Communication> communications;
 
     public Company(String name, String id) {
         this.name = name;

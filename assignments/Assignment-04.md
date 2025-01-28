@@ -10,22 +10,22 @@ For example:
 
 ## Requirements
 
-- [] Replace all Fields with Lists
-- [] Create abstract class `Person` with firstName and lastName
-- [] Update Client and Employee classes to extend `Person`
+- [] Replace all Fields with Lists- DONE
+- [] Create abstract class `Person` with firstName and lastName - DONE
+- [] Update Client and Employee classes to extend `Person`- DONE
 - [] Adjust the print of client and employees to print all `Persons` in alphabetical order by name and next to each person print if it is client or employee 
-- [] Create enum `ArticleCategory` with values: `Software`, `Hardware`, `Mechanic`
-- [] Ask user to select article category after he enters article name
-- [] Create enum `ServiceType` with values: `Retail`, `Wholesale`, `Service`
-- [] Ask user to select service type after he selects the client for the service 
-- [] After execution, check if there are active alarms => you can do that by comparing current time with alarm time
-- [] If there are active alarms, throw `AlarmExpiresException` with alarm description
-- [] You should keep checking for active alarms every 5 seconds until all alarms are turned off -> check `Thread.sleep()` method
-- [] After all alarms are turned off, display message `All alarms are turned off`
-- [] Create class `Communication`
-- [] Create enum `CommunicationType` with values: `Email`, `Phone`, `SMS`
-- [] Add communication as a variable to the `Company` class
-- [] For every active alarm, ask user if he wants to open communication
+- [] Create enum `ArticleCategory` with values: `Software`, `Hardware`, `Mechanic` - DONE
+- [] Ask user to select article category after he enters article name - DONE
+- [] Create enum `ServiceType` with values: `Retail`, `Wholesale`, `Service` - DONE
+- [] Ask user to select service type after he selects the client for the service - DONE
+- [] After execution, check if there are active alarms => you can do that by comparing current time with alarm time - DONE
+- [] If there are active alarms, throw `AlarmExpiresException` with alarm description - DONE
+- [] You should keep checking for active alarms every 5 seconds until all alarms are turned off -> check `Thread.sleep()` method - DONE
+- [] After all alarms are turned off, display message `All alarms are turned off` 
+- [] Create class `Communication` - DONE
+- [] Create enum `CommunicationType` with values: `Email`, `Phone`, `SMS` - DONE
+- [] Add communication as a variable to the `Company` class - CHECK
+- [] For every active alarm, ask user if he wants to open communication - 
 - [] If user selects no, do nothing, wait for another alarm check
 - [] If user selects yes, proceed with communication (check output example)
 - [] After communication is done, save it to the company communication list, set that alarm status to false, and proceed with another alarm check until there are no active alarms

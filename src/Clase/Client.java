@@ -1,7 +1,7 @@
 package Clase;
 import java.time.LocalDate;
 
-public class Client {
+public class Client extends Person{
     String id;
     String firstName;
     String lastName;

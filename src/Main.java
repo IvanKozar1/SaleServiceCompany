@@ -4,11 +4,26 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.lang.Thread;
+
+
+
+enum ArticleCategory {
+    Software,
+    Hardware,
+    Mechanic
+}
+enum ServiceType {
+    Retail,
+    Wholesale,
+    Service
+}
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        LocalDate currentDate = LocalDate.now();
         RetailCompany company = enterCompany();
 
         System.out.println("ISPIS PODATAKA");
@@ -28,10 +43,13 @@ public class Main {
         }
 
         for (int i = 0; i < alarms.size(); i++) {
-            try {
-                activateAlarm(alarms.get(i));
-            } catch (AlarmExpiresException e) {
-                System.out.println("Izuzetak: " + e.getMessage());
+            Thread.sleep(5000);
+            if (currentDate == alarms.get(i).getTime()) {
+                try {
+                    activateAlarm(alarms.get(i));
+                } catch (AlarmExpiresException e) {
+                    System.out.println("Izuzetak: " + e.getMessage());
+                }
             }
         }
         scanner.close();
@@ -146,6 +164,8 @@ public class Main {
     private static Article enterArticle() {
         System.out.print("Unesite naziv artikla: ");
         String name = scanner.nextLine();
+        System.out.println("Unesite kategoriju artikla (Software, Hardware ili Mechanic");
+        ArticleCategory articleCategory = ArticleCategory.valueOf(scanner.nextLine());
         System.out.print("Unesite kategoriju artikla: ");
         String category = scanner.nextLine();
 
@@ -173,10 +193,13 @@ public class Main {
                 System.out.println("Pogrešan unos! Pokušajte ponovno.");
                 continue;
             }
+            System.out.println("Odaberite tip usluge : Retail, Wholesale ili Service");
+            ServiceType serviceType = ServiceType.valueOf(scanner.nextLine());
+
 
             System.out.print("Vrsta usluge: ");
             scanner.nextLine();
-            String serviceType = scanner.nextLine();
+            String enterServiceType = scanner.nextLine();
             System.out.print("Opis usluge: ");
             String serviceDescription = scanner.nextLine();
             System.out.print("Cijena usluge: ");
@@ -190,7 +213,7 @@ public class Main {
             int numOfSellingArticles = scanner.nextInt();
 
 
-            ArticleSale sale = new ArticleSale(clientChoose, serviceType, serviceDescription, serviceDate, servicePrice, servicePrice);
+            ArticleSale sale = new ArticleSale(clientChoose, enterServiceType, serviceDescription, serviceDate, servicePrice, servicePrice);
             articleSale.add(sale);
 
             BigDecimal singleServicePrice = sale.sale(numOfSellingArticles);
